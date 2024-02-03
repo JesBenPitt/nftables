@@ -45,9 +45,9 @@ SCRIPT
 
 	fachada.vm.network "public_network", 
 		use_dhcp_assigned_default_route: true
-	fachada.vm.network "private_network", ip: "192.168.33.0",
+	fachada.vm.network "private_network", ip: "192.168.33.1",
 		virtualbox__intnet: "lan"
-	fachada.vm.network "private_network", ip: "192.168.111.0",
+	fachada.vm.network "private_network", ip: "192.168.111.1",
                 virtualbox__intnet: "dmz"
   end
 
@@ -58,15 +58,15 @@ SCRIPT
 	lan.vm.hostname = "lan"
 
 	$scriptGateway = <<-'SCRIPT'
-       		ip r add default via 192.168.33.0
-		ping -c 2 192.168.33.0
+       		ip r add default via 192.168.33.1
+		ping -c 2 192.168.33.1
 		ping -c 2 www.google.com
   	SCRIPT
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
           lgw.inline = $scriptGateway
         end
 	
-	lan.vm.network "private_network", ip: "192.168.33.0",
+	lan.vm.network "private_network", ip: "192.168.33.2",
 		virtualbox__intnet: "lan"
   end
 
@@ -76,15 +76,15 @@ SCRIPT
 	dmz.vm.hostname = "dmz"
 
 	$scriptGateway = <<-'SCRIPT'
-		ip r add default via 192.168.111.0
-		ping -c 2 192.168.111.0
+		ip r add default via 192.168.111.1
+		ping -c 2 192.168.111.1
 		ping -c 2 google.com
         SCRIPT
         dmz.vm.provision "lan_all", type: "shell", run: "always" do |dgw|
           dgw.inline = $scriptGateway
         end
 
-	dmz.vm.network "private_network", ip: "192.168.111.0",
+	dmz.vm.network "private_network", ip: "192.168.111.2",
                 virtualbox__intnet: "dmz"
   end
 
