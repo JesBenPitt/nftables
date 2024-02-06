@@ -64,11 +64,15 @@ SCRIPT
   	SCRIPT
 
 	$scriptReglas = <<-'SCRIPT'
-	  	wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json?token=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A
-	  	mv file.json\?token\=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A file.json
-		sudo nft -j -f file.json
-		rm file.nft
+    		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json?token=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A
+    		mv file.json\?token\=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A file.json
+    		sudo nft -j -f file.json
+    		rm file.nft
   	SCRIPT
+
+  	lan.vm.provision "boot", type: "shell" do |boot|
+    	  boot.inline = $scriptReglas
+  	end
 
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
           lgw.inline = $scriptGateway
