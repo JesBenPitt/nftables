@@ -70,13 +70,13 @@ SCRIPT
     		rm file.nft
   	SCRIPT
 
-  	lan.vm.provision "boot", type: "shell" do |boot|
-    	  boot.inline = $scriptReglas
-  	end
-
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
           lgw.inline = $scriptGateway
         end
+
+	lan.vm.provision "boot", type: "shell" do |boot|
+    	  boot.inline = $scriptReglas
+  	end
 	
 	lan.vm.network "private_network", ip: "192.168.33.2",
 		virtualbox__intnet: "lan"
