@@ -35,7 +35,6 @@ SCRIPT
 	$scriptFachada = <<-'SCRIPT'
 	echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
 	iptables -t nat -A POSTROUTING -o enp0s8 -j MASQUERADE
-	wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/Vagrantfile?token=GHSAT0AAAAAACNXUYB26VVFBKKTJD2GGWG2ZOBNXEA /home/vagrant/Prueba
 	SCRIPT
 	fachada.vm.provision "fachada_once", type: "shell" do |fo|
 	  fo.inline = $scriptFachada
@@ -64,12 +63,12 @@ SCRIPT
 		ping -c 2 www.google.com
   	SCRIPT
 
-	$scriptReglas = <<- 'SCRIPT'
-		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json?token=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A
-		mv file.json?token=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A file.json
+	$scriptReglas = <<-'SCRIPT'
+	  	wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json?token=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A
+	  	mv file.json?token=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A file.json
 		sudo nft -j -f file.json
 		rm file.nft
-	SCRIPT
+  	SCRIPT
 
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
           lgw.inline = $scriptGateway
