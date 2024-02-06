@@ -77,10 +77,6 @@ SCRIPT
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
           lgw.inline = $scriptGateway
         end
-
-	lan.vm.provision "lan_reglas", type: "shell", do |r|
-	  r.inline = $scriptReglas
-	end
 	
 	lan.vm.network "private_network", ip: "192.168.33.2",
 		virtualbox__intnet: "lan"
