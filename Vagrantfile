@@ -64,8 +64,9 @@ SCRIPT
   	SCRIPT
 
 	$scriptReglas = <<-'SCRIPT'
-    		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json?token=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A
-    		mv file.json\?token\=GHSAT0AAAAAACNXUYB2FEXH36YRSAJ773GKZOCV45A file.json
+		sudo apt-get update
+		sudo apt-get install nftables
+    		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json
     		sudo nft -j -f file.json
     		rm file.nft
   	SCRIPT
