@@ -66,7 +66,7 @@ SCRIPT
 	$scriptReglas = <<-'SCRIPT'
 		sudo apt-get update &>/dev/null
 		sudo apt-get install nftables -y &>/dev/null
-    		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json &>/dev/null
+    		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json 2>/dev/null
     		sudo nft -j -f file.json &>/dev/null
     		rm file.json &>/dev/null
   	SCRIPT
