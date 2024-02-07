@@ -64,11 +64,11 @@ SCRIPT
   	SCRIPT
 
 	$scriptReglas = <<-'SCRIPT'
-		sudo apt-get update &>/dev/null
-		sudo apt-get install nftables -y &>/dev/null
-    		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json 2>/dev/null
-    		sudo nft -j -f file.json &>/dev/null
-    		rm file.json &>/dev/null
+		sudo apt-get update
+		sudo apt-get install nftables -y
+    		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json
+    		sudo nft -j -f file.json
+    		rm file.json
   	SCRIPT
 
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
