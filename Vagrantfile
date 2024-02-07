@@ -64,9 +64,7 @@ SCRIPT
   	SCRIPT
 
 	$scriptReglas = <<-'SCRIPT'
-    		wget https://raw.githubusercontent.com/JesBenPitt/nftables/main/file.json
-    		sudo nft -j -f file.json
-    		rm file.json
+    		sudo nft -j -f /vagrant/file.json
   	SCRIPT
 
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
