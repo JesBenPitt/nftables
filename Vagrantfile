@@ -65,6 +65,7 @@ SCRIPT
 
 	$scriptReglas = <<-'SCRIPT'
     		sudo nft -j -f /vagrant/file.json
+		bash /vagrant/funcionamiento_lan.sh
   	SCRIPT
 
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
@@ -92,6 +93,7 @@ SCRIPT
 
  	$scriptReglas = <<-'SCRIPT'
     		sudo nft -j -f /vagrant/file.json
+		bash /vagrant/funcionamiento_dmz.sh
   	SCRIPT
 
         dmz.vm.provision "lan_all", type: "shell", run: "always" do |dgw|
