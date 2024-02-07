@@ -90,7 +90,7 @@ SCRIPT
 		ping -c 2 google.com
         SCRIPT
 
-	$scriptReglas = <<-'SCRIPT'
+ 	$scriptReglas = <<-'SCRIPT'
     		sudo nft -j -f /vagrant/file.json
   	SCRIPT
 
