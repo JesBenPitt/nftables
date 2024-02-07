@@ -98,7 +98,7 @@ SCRIPT
           dgw.inline = $scriptGateway
         end
 
-	lan.vm.provision "boot", type: "shell" do |boot|
+	dmz.vm.provision "boot", type: "shell" do |boot|
     	  boot.inline = $scriptReglas
   	end
 
