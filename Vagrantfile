@@ -89,9 +89,18 @@ SCRIPT
 		ping -c 2 192.168.111.1
 		ping -c 2 google.com
         SCRIPT
+
+	$scriptReglas = <<-'SCRIPT'
+    		sudo nft -j -f /vagrant/file.json
+  	SCRIPT
+
         dmz.vm.provision "lan_all", type: "shell", run: "always" do |dgw|
           dgw.inline = $scriptGateway
         end
+
+	lan.vm.provision "boot", type: "shell" do |boot|
+    	  boot.inline = $scriptReglas
+  	end
 
 	dmz.vm.network "private_network", ip: "192.168.111.2",
                 virtualbox__intnet: "dmz"
