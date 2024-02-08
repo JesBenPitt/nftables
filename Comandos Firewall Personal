@@ -1,0 +1,26 @@
+
+nft add rule ip filter input iifname "enp0s3" tcp dport 22 counter accept
+nft add rule ip filter output oifname "enp0s3" tcp sport 22 counter accept
+nft add rule ip filter output oifname "enp0s8" icmp type echo-request counter accept
+nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
+nft add rule ip filter output oifname "enp0s8" udp dport 53 counter accept
+nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
+nft add rule ip filter output oifname "enp0s8" tcp dport 80 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
+nft add rule ip filter output oifname "enp0s8" tcp dport 443 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
+nft add rule ip filter output oifname "enp0s8" icmp type echo-request counter accept
+nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
+nft add rule ip filter output oifname "enp0s8" udp dport 53 counter accept
+nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
+nft add rule ip filter output oifname "enp0s8" tcp dport 80 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
+nft add rule ip filter output oifname "enp0s8" tcp dport 443 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
+nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
+nft add rule ip filter output oifname "enp0s8" udp dport 53 counter accept
+nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
+nft add rule ip filter output oifname "enp0s8" tcp dport 80 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
+nft add rule ip filter output oifname "enp0s8" tcp dport 443 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
