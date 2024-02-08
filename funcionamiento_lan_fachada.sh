@@ -1,26 +1,30 @@
 sudo nft flush ruleset
 
-echo "Comprobando ping a FACHADA desde LAN."
+rojo="\e[31m"
+verde="\e[32m"
+amarillo="\e[33m"
+fin="\e[0m"
+echo "${amarillo}Comprobando ping a FACHADA desde LAN.${fin}"
 ping -c1 192.168.33.1
 if [ $? == 0 ]
   then
-    echo "Ping a FACHADA desde LAN funcionando correctamente."
+    echo "${verde}Ping a FACHADA desde LAN funcionando correctamente.${fin}"
   else
-    echo "Ha ocurrido un error con el ping a FACHADA."
+    echo "${rojo}Ha ocurrido un error con el ping a FACHADA.${fin}"
 fi
-echo "Comprobando consultas DNS desde LAN a través de FACHADA."
+echo "${amarillo}Comprobando consultas DNS desde LAN a través de FACHADA.${fin}"
 nslookup google.com
 if [ $? == 0 ]
   then
-    echo "Consultas DNS desde LAN a través de FACHADA funcionando correctamente."
+    echo "${verde}Consultas DNS desde LAN a través de FACHADA funcionando correctamente.${fin}"
   else
-    echo "Ha ocurrido un error con las consultas a DNS desde LAN a través de FACHADA."
+    echo "${rojo}Ha ocurrido un error con las consultas a DNS desde LAN a través de FACHADA.${fin}"
 fi
-echo "Comprobando ping a DMZ desde LAN."
+echo "${amarillo}Comprobando ping a DMZ desde LAN.${fin}"
 ping -c1 192.168.111.2
 if [ $? == 0 ]
   then
-    echo "Ping a DMZ desde LAN funcionando correctamente."
+    echo "${verde}Ping a DMZ desde LAN funcionando correctamente.${fin}"
   else
-    echo "Ha ocurrido un error con el ping a DMZ."
+    echo "${rojo}Ha ocurrido un error con el ping a DMZ.${fin}"
 fi
