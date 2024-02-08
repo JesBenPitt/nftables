@@ -6,6 +6,7 @@ if [ $? == 0 ]
   else
     echo "Ha ocurrido un error con el ping a Google."
 fi
+echo "Comprobando consultas DNS desde FACHADA."
 nslookup google.com
 if [ $? == 0 ]
   then
