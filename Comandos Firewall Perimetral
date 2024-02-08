@@ -39,6 +39,6 @@ sudo nft add rule ip filter forward iifname "enp0s10" oifname "enp0s9" ip saddr 
 sudo nft add rule ip filter forward iifname "enp0s9" oifname "enp0s10" ip saddr 192.168.33.2 ip daddr 192.168.111.2 tcp sport 3306 counter accept
 
 //POLITICA DROP
-sudo nft add chain ip filter input { policy drop \; }
-sudo nft add chain ip filter output { policy drop \; }
-sudo nft add chain ip filter forward { policy drop \; }
+sudo nft chain ip filter input { policy drop \; }
+sudo nft chain ip filter output { policy drop \; }
+sudo nft chain ip filter forward { policy drop \; }
