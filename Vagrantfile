@@ -69,10 +69,10 @@ SCRIPT
 		if [ $? == 0 ]
 		then
 			echo -e "\e[32m Se han cargado todas las reglas del firewall correctamente. \e[0m"
+			bash /vagrant/funcionamiento_lan.sh
 		else
 			echo -e "\e[31m Ha ocurrido un error al cargar las reglas. \e[0m"
 		fi
-		bash /vagrant/funcionamiento_lan.sh
   	SCRIPT
 
 	lan.vm.provision "lan_all", type: "shell", run: "always" do |lgw|
@@ -104,10 +104,10 @@ SCRIPT
 		if [ $? == 0 ]
 		then
 			echo -e "\e[32m Se han cargado todas las reglas del firewall correctamente. \e[0m"
+			bash /vagrant/funcionamiento_dmz.sh
 		else
 			echo -e "\e[31m Ha ocurrido un error al cargar las reglas. \e[0m"
 		fi
-		bash /vagrant/funcionamiento_dmz.sh
   	SCRIPT
 
         dmz.vm.provision "lan_all", type: "shell", run: "always" do |dgw|
