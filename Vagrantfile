@@ -42,7 +42,7 @@ SCRIPT
 
 	$scriptReglas = <<-'SCRIPT'
 		echo -e "\e[33m Cargando reglas del firewall... \e[0m"
-    		sudo nft -j -f /vagrant/file.json
+    		sudo nft -j -f /vagrant/perimetral.json
 		if [ $? == 0 ]
 		then
 			echo -e "\e[32m Se han cargado todas las reglas del firewall correctamente. \e[0m"
