@@ -28,7 +28,7 @@ if [ $? == 0 ]
                 echo -e "${rojo}Algo está fallando en las reglas del firewall. ${fin}"
 fi
 echo -e "${amarillo}Comprobando solicitudes HTTP. ${fin}"
-curl http://google.com
+nc -zv www.google.com 80
 if [ $? == 0 ]
         then
                 echo -e "${verde}Solicitudes HTTP funcionando correctamente. ${fin}"
@@ -36,7 +36,7 @@ if [ $? == 0 ]
                 echo -e "${rojo}Algo está fallando en las reglas del firewall. ${fin}"
 fi
 echo -e "${amarillo}Comprobando solicitudes HTTPS. ${fin}"
-curl https://google.com
+nc -zv www.google.com 443
 if [ $? == 0 ]
         then
                 echo -e "${verde}Solicitudes HTTPS funcionando correctamente. ${fin}"
