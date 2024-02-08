@@ -55,7 +55,7 @@ SCRIPT
 	fachada.vm.provision "conectividad", type: "shell",
 		inline: "ping -c 2 google.com"
 
-	dmz.vm.provision "boot", type: "shell" do |boot|
+	fachada.vm.provision "boot", type: "shell" do |boot|
     	  boot.inline = $scriptReglas
   	end
 
