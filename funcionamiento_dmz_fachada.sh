@@ -1,3 +1,5 @@
+sudo nft flush ruleset
+
 echo "Comprobando ping a FACHADA desde DMZ."
 ping -c1 192.168.111.1
 if [ $? == 0 ]
@@ -13,4 +15,12 @@ if [ $? == 0 ]
     echo "Consultas DNS desde DMZ a través de FACHADA funcionando correctamente."
   else
     echo "Ha ocurrido un error con las consultas a DNS desde DMZ a través de FACHADA."
+fi
+echo "Comprobando ping a LAN desde DMZ."
+ping -c1 192.168.33.1
+if [ $? == 0 ]
+  then
+    echo "Ping a LAn desde DMZ funcionando correctamente."
+  else
+    echo "Ha ocurrido un error con el ping a LAN."
 fi
