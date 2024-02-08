@@ -33,7 +33,7 @@ if [ $? == 0 ]
         then
                 echo -e "${verde}Solicitudes HTTP funcionando correctamente. ${fin}"
         else
-                echo -e "$(tput setaf 1)Algo está fallando en las reglas del firewall. ${fin}"
+                echo -e "${rojo}Algo está fallando en las reglas del firewall. ${fin}"
 fi
 echo -e "${amarillo}Comprobando solicitudes HTTPS. ${fin}"
 curl https://google.com &>/dev/null
