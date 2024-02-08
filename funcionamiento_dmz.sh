@@ -4,7 +4,7 @@ verde="\e[32m"
 amarillo="\e[33m"
 fin="\e[0m"
 echo -e "${amarillo}Comprobando Ping a un equipo de lan. ${fin}"
-ping -c 2 192.168.33.1 &>/dev/null
+ping -c 2 192.168.33.1
 if [ $? == 0 ]
         then
                 echo -e "${verde}Ping dentro de la red funcionando. ${fin}"
@@ -12,7 +12,7 @@ if [ $? == 0 ]
                 echo -e "${rojo}Algo está fallando en las reglas del firewall. ${fin}"
 fi
 echo -e "${amarillo}Comprobando Ping al exterior. ${fin}"
-ping -c 2 google.com &>/dev/null
+ping -c 2 google.com
 if [ $? == 0 ]
         then
                 echo -e "${verde}Ping al exterior de la red funcionando. ${fin}"
@@ -20,7 +20,7 @@ if [ $? == 0 ]
                 echo -e "${rojo}Algo está fallando en las reglas del firewall. ${fin}"
 fi
 echo -e "${amarillo}Comprobando solicitudes DNS. ${fin}"
-nslookup google.com &>/dev/null
+nslookup google.com
 if [ $? == 0 ]
         then
                 echo -e "${verde}Solicitudes DNS funcionando correctamente. ${fin}"
@@ -28,7 +28,7 @@ if [ $? == 0 ]
                 echo -e "${rojo}Algo está fallando en las reglas del firewall. ${fin}"
 fi
 echo -e "${amarillo}Comprobando solicitudes HTTP. ${fin}"
-curl http://google.com &>/dev/null
+curl http://google.com
 if [ $? == 0 ]
         then
                 echo -e "${verde}Solicitudes HTTP funcionando correctamente. ${fin}"
@@ -36,7 +36,7 @@ if [ $? == 0 ]
                 echo -e "${rojo}Algo está fallando en las reglas del firewall. ${fin}"
 fi
 echo -e "${amarillo}Comprobando solicitudes HTTPS. ${fin}"
-curl https://google.com &>/dev/null
+curl https://google.com
 if [ $? == 0 ]
         then
                 echo -e "${verde}Solicitudes HTTPS funcionando correctamente. ${fin}"
