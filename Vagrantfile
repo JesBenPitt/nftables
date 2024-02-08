@@ -40,8 +40,24 @@ SCRIPT
 	  fo.inline = $scriptFachada
 	end
 
+	$scriptReglas = <<-'SCRIPT'
+		echo -e "\e[33m Cargando reglas del firewall... \e[0m"
+    		sudo nft -j -f /vagrant/file.json
+		if [ $? == 0 ]
+		then
+			echo -e "\e[32m Se han cargado todas las reglas del firewall correctamente. \e[0m"
+			bash /vagrant/funcionamiento_lan.sh
+		else
+			echo -e "\e[31m Ha ocurrido un error al cargar las reglas. \e[0m"
+		fi
+  	SCRIPT
+
 	fachada.vm.provision "conectividad", type: "shell",
 		inline: "ping -c 2 google.com"
+
+	dmz.vm.provision "boot", type: "shell" do |boot|
+    	  boot.inline = $scriptReglas
+  	end
 
 	fachada.vm.network "public_network", 
 		use_dhcp_assigned_default_route: true
