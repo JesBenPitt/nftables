@@ -1,0 +1,44 @@
+//TABLA
+sudo nft add table ip filter
+
+//INPUT
+sudo nft add chain ip filter input { type filter hook input priority 0 \; }
+sudo nft add rule ip filter input iifname "enp0s3" ip protocol tcp tcp dport 22 counter accept
+sudo nft add rule ip filter input iifname "enp0s8" ip protocol icmp counter accept
+sudo nft add rule ip filter input iifname "enp0s9" ip protocol icmp ip saddr 192.168.33.0/24 counter accept
+sudo nft add rule ip filter input iifname "enp0s10" ip protocol icmp ip saddr 192.168.111.0/24 counter accept
+
+//OUTPUT
+sudo nft add chain ip filter output { type filter hook output priority 0 \; }
+sudo nft add rule ip filter output oifname "enp0s3" ip protocol tcp tcp sport 22 counter accept
+sudo nft add rule ip filter output oifname "enp0s8" ip protocol icmp counter accept
+sudo nft add rule ip filter output oifname "enp0s9" ip protocol icmp ip daddr 192.168.33.0/24 counter accept
+sudo nft add rule ip filter output oifname "enp0s10" ip protocol icmp ip daddr 192.168.111.0/24 counter accept
+
+//FORWARD
+sudo nft add chain ip filter forward { type filter hook forward priority 0 \; }
+sudo nft add rule ip filter forward iifname "enp0s9" oifname "enp0s10" icmp type echo-request counter accept
+sudo nft add rule ip filter forward iifname "enp0s10" oifname "enp0s9" icmp type echo-reply counter accept
+sudo nft add rule ip filter forward iifname "enp0s10" oifname "enp0s9" icmp type echo-request counter accept
+sudo nft add rule ip filter forward iifname "enp0s9" oifname "enp0s10" icmp type echo-reply counter accept
+sudo nft add rule ip filter forward iifname "enp0s9" oifname "enp0s8" ip saddr 192.168.33.0/24 udp dport 53 counter accept
+sudo nft add rule ip filter forward iifname "enp0s8" oifname "enp0s9" ip daddr 192.168.33.0/24 udp sport 53 counter accept
+sudo nft add rule ip filter forward iifname "enp0s10" oifname "enp0s8" ip saddr 192.168.111.0/24 udp dport 53 counter accept
+sudo nft add rule ip filter forward iifname "enp0s8" oifname "enp0s10" ip daddr 192.168.111.0/24 udp sport 53 counter accept
+sudo nft add rule ip filter forward iifname "enp0s9" oifname "enp0s8" ip saddr 192.168.33.0/24 tcp dport 80 counter accept
+sudo nft add rule ip filter forward iifname "enp0s8" oifname "enp0s9" ip daddr 192.168.33.0/24 tcp sport 80 counter accept
+sudo nft add rule ip filter forward iifname "enp0s9" oifname "enp0s8" ip saddr 192.168.33.0/24 tcp dport 443 counter accept
+sudo nft add rule ip filter forward iifname "enp0s8" oifname "enp0s9" ip daddr 192.168.33.0/24 tcp sport 443 counter accept
+sudo nft add rule ip filter forward oifname "enp0s10" ip daddr 192.168.111.2 tcp dport 80 counter accept
+sudo nft add rule ip filter forward iifname "enp0s10" ip saddr 192.168.111.2 tcp sport 80 counter accept
+sudo nft add rule ip filter forward oifname "enp0s10" ip daddr 192.168.111.2 tcp dport 443 counter accept
+sudo nft add rule ip filter forward iifname "enp0s10" ip saddr 192.168.111.2 tcp sport 443 counter accept
+sudo nft add rule ip filter forward oifname "enp0s10" ip daddr 192.168.111.2 tcp dport 25 counter accept
+sudo nft add rule ip filter forward iifname "enp0s10" ip saddr 192.168.111.2 tcp sport 25 counter accept
+sudo nft add rule ip filter forward iifname "enp0s10" oifname "enp0s9" ip saddr 192.168.111.2 ip daddr 192.168.33.2 tcp dport 3306 counter accept
+sudo nft add rule ip filter forward iifname "enp0s9" oifname "enp0s10" ip saddr 192.168.33.2 ip daddr 192.168.111.2 tcp sport 3306 counter accept
+
+//POLITICA DROP
+sudo nft add chain ip filter input { policy drop \; }
+sudo nft add chain ip filter output { policy drop \; }
+sudo nft add chain ip filter forward { policy drop \; }
