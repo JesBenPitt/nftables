@@ -1,26 +1,39 @@
+//TABLA
+sudo nft add table ip filter
 
+//INPUT
+sudo nft add chain ip filter input { type filter hook input priority 0 \; }
+sudo nft add rule ip filter input iifname "enp0s3" ip protocol tcp tcp dport 22 counter accept
 nft add rule ip filter input iifname "enp0s3" tcp dport 22 counter accept
+nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
+nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
+nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
+nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
+nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
+nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
+nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
+
+//OUTPUT
+sudo nft add chain ip filter output { type filter hook output priority 0 \; }
+sudo nft add rule ip filter output oifname "enp0s3" ip protocol tcp tcp sport 22 counter accept
 nft add rule ip filter output oifname "enp0s3" tcp sport 22 counter accept
 nft add rule ip filter output oifname "enp0s8" icmp type echo-request counter accept
-nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
 nft add rule ip filter output oifname "enp0s8" udp dport 53 counter accept
-nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
 nft add rule ip filter output oifname "enp0s8" tcp dport 80 counter accept
-nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
 nft add rule ip filter output oifname "enp0s8" tcp dport 443 counter accept
-nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
 nft add rule ip filter output oifname "enp0s8" icmp type echo-request counter accept
-nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
 nft add rule ip filter output oifname "enp0s8" udp dport 53 counter accept
-nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
 nft add rule ip filter output oifname "enp0s8" tcp dport 80 counter accept
-nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
 nft add rule ip filter output oifname "enp0s8" tcp dport 443 counter accept
-nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
-nft add rule ip filter input iifname "enp0s8" icmp type echo-reply counter accept
 nft add rule ip filter output oifname "enp0s8" udp dport 53 counter accept
-nft add rule ip filter input iifname "enp0s8" udp sport 53 counter accept
 nft add rule ip filter output oifname "enp0s8" tcp dport 80 counter accept
-nft add rule ip filter input iifname "enp0s8" tcp sport 80 counter accept
 nft add rule ip filter output oifname "enp0s8" tcp dport 443 counter accept
-nft add rule ip filter input iifname "enp0s8" tcp sport 443 counter accept
+
+/POLITICA DROP
+sudo nft chain ip filter input { policy drop \; }
+sudo nft chain ip filter output { policy drop \; }
