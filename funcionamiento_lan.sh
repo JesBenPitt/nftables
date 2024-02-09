@@ -3,7 +3,7 @@ rojo="\e[31m"
 verde="\e[32m"
 amarillo="\e[33m"
 fin="\e[0m"
-echo -e "${amarillo}Comprobando Ping a un equipo de lan. ${fin}"
+echo -e "${amarillo}Comprobando Ping a DMZ. ${fin}"
 ping -c 2 192.168.111.1
 if [ $? == 0 ]
         then
