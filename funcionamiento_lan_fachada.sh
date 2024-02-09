@@ -28,3 +28,19 @@ if [ $? == 0 ]
   else
     echo -e "${rojo}Ha ocurrido un error con el ping a DMZ.${fin}"
 fi
+echo -e "${amarillo}Comprobando solicitudes HTTP desde LAN.${fin}"
+nc -zv www.google.com 80
+if [ $? == 0 ]
+  then
+    echo -e "${verde}PSolicitudes HTTP desde LAN funcionando correctamente.${fin}"
+  else
+    echo -e "${rojo}Ha ocurrido un error con las peticiones HTTP.${fin}"
+fi
+echo -e "${amarillo}Comprobando solicitudes HTTPA desde LAN.${fin}"
+nc -zv www.google.com 443
+if [ $? == 0 ]
+  then
+    echo -e "${verde}PSolicitudes HTTP desde LAN funcionando correctamente.${fin}"
+  else
+    echo -e "${rojo}Ha ocurrido un error con las peticiones HTTPS.${fin}"
+fi
